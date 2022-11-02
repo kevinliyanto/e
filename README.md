@@ -1,3 +1,13 @@
+# e
+
+## Booting up development
+
+```sh
+docker compose up
+```
+
+---
+
 # node-typescript-boilerplate
 
 [![Sponsor][sponsor-badge]][sponsor]
