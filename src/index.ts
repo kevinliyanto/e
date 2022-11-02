@@ -1,11 +1,6 @@
-/**
- * Some predefined delay values (in milliseconds).
- */
-export enum Delays {
-  Short = 500,
-  Medium = 2000,
-  Long = 5000,
-}
+// Read TS4.7 devblog for the import
+// https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#type-in-package-json-and-new-extensions
+import { Delays } from './const.js';
 
 /**
  * Returns a Promise<string> that resolves after a given time.
@@ -19,7 +14,10 @@ function delayedHello(
   delay: number = Delays.Medium,
 ): Promise<string> {
   return new Promise((resolve: (value?: string) => void) =>
-    setTimeout(() => resolve(`Hello, ${name}`), delay),
+    setTimeout(() => {
+      console.log('test');
+      resolve(`Hello, ${name}`);
+    }, delay),
   );
 }
 
@@ -28,7 +26,10 @@ function delayedHello(
 // at https://eslint.org/docs/latest/user-guide/configuring/rules#disabling-rules
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export async function greeter(name: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+export async function greeter(name: any) {
+  // eslint-disable-line @typescript-eslint/no-explicit-any
   // The name parameter should be of type string. Any is used only to trigger the rule.
   return await delayedHello(name, Delays.Long);
 }
+
+greeter('Test');
